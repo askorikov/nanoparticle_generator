@@ -1,0 +1,17 @@
+[project]
+name = "nanoparticle_generator"
+description = "Generate randomizable nanoparticle shapes using Blender"
+version = "0.0.1"
+dependencies = [
+    "bpy",
+    "pyvista",
+    "vtk",
+    "numpy"
+]
+
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages]
+find = {}
