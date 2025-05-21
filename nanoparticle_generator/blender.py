@@ -252,6 +252,13 @@ class BlenderObjectReference:
             bpy.context.object.modifiers['Boolean'].operation = operation.upper()
             bpy.context.object.modifiers['Boolean'].object = other.blender_object
             bpy.ops.object.modifier_apply(modifier='Boolean')
+    
+    def triangulate(self, quad_method='beauty', ngon_method='beauty'):
+        with self.selected(mode='object'):
+            bpy.ops.object.modifier_add(type='TRIANGULATE')
+            bpy.context.object.modifiers["Triangulate"].quad_method = quad_method.upper()
+            bpy.context.object.modifiers["Triangulate"].ngon_method = ngon_method.upper()
+            bpy.ops.object.modifier_apply(modifier='Triangulate')
 
     def export_stl(self, filepath):
         with self.selected(mode='object'):
