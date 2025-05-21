@@ -243,6 +243,7 @@ class BlenderObjectReference:
             bpy.ops.object.modifier_add(type='BEVEL')
             bpy.context.object.modifiers['Bevel'].width = bevel_width
             bpy.context.object.modifiers['Bevel'].segments = n_segments
+            bpy.context.object.modifiers['Bevel'].angle_limit = np.deg2rad(10)
             bpy.ops.object.modifier_apply(modifier='Bevel')
 
     def apply_boolean(self, other, operation='intersect'):
