@@ -142,5 +142,3 @@ class Bipyramid(BlenderObjectReference):
                     return
                 bpy.ops.mesh.bevel(affect='VERTICES', offset_type='WIDTH', offset=bevel_width,
                                    segments=1, clamp_overlap=True)
-        # Adjust object size after truncation
-        self.scale([1.0, 1.0, height / self.dimensions.z])
