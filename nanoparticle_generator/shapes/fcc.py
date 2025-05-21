@@ -93,10 +93,10 @@ class Decahedron(BlenderObjectReference):
 
 
 class Bipyramid(BlenderObjectReference):
-    def __init__(self, height=1.0, smoothing_degree=0.0):
+    def __init__(self, height=1.0, tips_truncation_degree=0.0, smoothing_degree=0.0):
         """Typical Au pentagonal bipyramid (tip angle ~30 deg)."""
         n_sides = 5
         diameter = height / 3.7321
-        basic.Bipyramid.__init__(self, n_sides, diameter, height)
+        basic.Bipyramid.__init__(self, n_sides, diameter, height, tips_truncation_degree)
         self.smooth_edges(smoothing_degree)
         self.scale(height / self.dimensions.z)
