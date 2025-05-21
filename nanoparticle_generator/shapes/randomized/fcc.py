@@ -102,7 +102,8 @@ class Bipyramid(BlenderObjectReference):
         """Typical Au pentagonal bipyramid (tip angle ~30 deg)."""
         height = 1.0
         smoothing_degree = np.random.uniform(low=0.0, high=0.1)
-        fcc.Bipyramid.__init__(self, height, smoothing_degree)
+        fcc.Bipyramid.__init__(self, height, tips_truncation_degree=smoothing_degree,
+                               smoothing_degree=smoothing_degree)
 
 
 ALL_SHAPES = (Sphere, Cube, Rod, Octahedron, TruncatedOctahedron, Icosahedron,
