@@ -241,6 +241,7 @@ class BlenderObjectReference:
             if bevel_width < BLENDER_EPS:
                 return
             bpy.ops.object.modifier_add(type='BEVEL')
+            bpy.context.object.modifiers['Bevel'].offset_type = 'WIDTH'
             bpy.context.object.modifiers['Bevel'].width = bevel_width
             bpy.context.object.modifiers['Bevel'].segments = n_segments
             bpy.context.object.modifiers['Bevel'].angle_limit = np.deg2rad(10)

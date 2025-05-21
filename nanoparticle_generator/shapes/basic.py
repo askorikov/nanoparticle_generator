@@ -137,10 +137,10 @@ class Bipyramid(BlenderObjectReference):
                 def is_vertex_out_of_plane(vertex):
                     return abs(vertex.co[2]) > BLENDER_EPS
                 self.select_vertices(criterion_func=is_vertex_out_of_plane)
-                bpy.ops.mesh.bevel(affect='VERTICES',
-                                offset_type='PERCENT',
-                                offset_pct=100*tips_truncation_degree,
-                                segments=1,
-                                clamp_overlap=True)
+                bevel_width = tips_truncation_degree * max(self.dimensions)
+                if bevel_width < BLENDER_EPS:
+                    return
+                bpy.ops.mesh.bevel(affect='VERTICES', offset_type='WIDTH', offset=bevel_width,
+                                   segments=1, clamp_overlap=True)
         # Adjust object size after truncation
         self.scale([1.0, 1.0, height / self.dimensions.z])
