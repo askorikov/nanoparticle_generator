@@ -53,8 +53,8 @@ class BlenderObjectReference:
         """Bounding box center."""
         return self.bounding_box[0] + self.dimensions/2
 
-    def translate(self, transation_vector):
-        self.blender_object.location = transation_vector
+    def translate(self, translation_vector):
+        self.blender_object.location = translation_vector
         self.apply_all_transforms()
 
     @property
