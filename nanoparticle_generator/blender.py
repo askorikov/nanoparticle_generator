@@ -8,7 +8,7 @@ import vtk
 from mathutils import Vector
 
 
-BLENDER_EPS = 1e-5  # Tolerance for Blender floating point operations
+BLENDER_EPS = 1e-4  # Tolerance for Blender floating point operations
 
 
 def _suppress_stdout(func):
