@@ -49,6 +49,11 @@ class BlenderObjectReference:
         return cls(bpy.context.object)
 
     @property
+    def index(self):
+        """Index of the object in the Blender data collection"""
+        return list(bpy.data.objects).index(self.blender_object)
+
+    @property
     def location(self):
         """Bounding box center."""
         return self.bounding_box[0] + self.dimensions/2
