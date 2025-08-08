@@ -93,6 +93,7 @@ class Prism(BlenderObjectReference):
                                 offset_pct=100*truncation_degree,
                                 clamp_overlap=True)
             # Bevel is applied upon switching back to object mode
+            self.remove_duplicate_vertices()
 
         # Smooth tips and horizontal edges separately because of high anisotropy
         if tips_smoothing_degree > 0:
@@ -101,12 +102,14 @@ class Prism(BlenderObjectReference):
                 bpy.ops.mesh.bevel(offset=tips_smoothing_degree*self.dimensions.x,
                                    segments=smoothing_bevel_segments,
                                    clamp_overlap=True)
+            self.remove_duplicate_vertices()
         if edges_smoothing_degree > 0:
             with self.selected(mode='edit'):
                 self.select_edges(criterion_func=lambda x: not is_edge_vertical(x))
                 bpy.ops.mesh.bevel(offset=edges_smoothing_degree*self.dimensions.z,
                                 segments=smoothing_bevel_segments,
                                 clamp_overlap=True)
+            self.remove_duplicate_vertices()
         # Adjust object size after truncation
         self.scale(size / np.hypot(self.dimensions.x, self.dimensions.y))
 
@@ -142,3 +145,4 @@ class Bipyramid(BlenderObjectReference):
                     return
                 bpy.ops.mesh.bevel(affect='VERTICES', offset_type='WIDTH', offset=bevel_width,
                                    segments=1, clamp_overlap=True)
+                self.remove_duplicate_vertices()

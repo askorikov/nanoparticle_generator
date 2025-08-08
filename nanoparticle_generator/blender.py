@@ -251,6 +251,7 @@ class BlenderObjectReference:
             bpy.context.object.modifiers['Bevel'].segments = n_segments
             bpy.context.object.modifiers['Bevel'].angle_limit = np.deg2rad(10)
             bpy.ops.object.modifier_apply(modifier='Bevel')
+        self.remove_duplicate_vertices()
 
     def apply_boolean(self, other, operation='intersect'):
         """Apply a boolean operation based on another object"""
@@ -259,7 +260,7 @@ class BlenderObjectReference:
             bpy.context.object.modifiers['Boolean'].operation = operation.upper()
             bpy.context.object.modifiers['Boolean'].object = other.blender_object
             bpy.ops.object.modifier_apply(modifier='Boolean')
-    
+
     def triangulate(self, quad_method='beauty', ngon_method='beauty'):
         with self.selected(mode='object'):
             bpy.ops.object.modifier_add(type='TRIANGULATE')
